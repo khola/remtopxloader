@@ -1,6 +1,6 @@
 const css = require("css");
 
-const remExp = /([.0-9]+[rem])\w+/g;
+const remBasedValues = /([.0-9]+[rem])\w+/g;
 
 module.exports = function loader(content) {
   const parsed = css.parse(content);
@@ -12,12 +12,12 @@ module.exports = function loader(content) {
       ...rule,
       declarations: declarations.map(declaration => {
         if (declaration.value && declaration.value.indexOf("rem") > -1) {
-          let oldVal = declaration.value;
-          const values = oldVal.match(remExp);
+          let currentValue = declaration.value;
+          const values = currentValue.match(remBasedValues);
           values.forEach(value => {
-            oldVal = oldVal.replace(value, `${parseFloat(value) * 16}px`);
+            currentValue = currentValue.replace(value, `${parseFloat(value) * 16}px`);
           });
-          return { ...declaration, value: oldVal };
+          return { ...declaration, value: currentValue };
         } else {
           return declaration;
         }

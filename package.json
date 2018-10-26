@@ -1,8 +1,12 @@
 {
   "name": "rem-to-px-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Converts all REMs to 16px based px",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khola/remtopxloader.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
